@@ -67,7 +67,7 @@ export class FormularioComponent implements OnInit {
           [
             Validators.required,
             Validators.min(1),
-            Validators.max(99)
+            Validators.max(150)
           ]),
       servicios: new FormArray([this.crearServicioFormGroup()],
         Validators.minLength(1))

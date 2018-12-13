@@ -43,7 +43,7 @@
               <input name="direccion" class="form-control" type="text" formControlName="direccion" placeholder="Mínimo 2 letras y máximo 50">
               <small class="form-text text-danger" 
               *ngIf="formulario.controls.direccion.invalid && formulario.controls.direccion.touched">
-                *Mínimo 2 letras y máximo 50.
+                *Mínimo 2 letras y máximo 150.
               </small>
               <small class="form-text text-success" *ngIf="formulario.controls.direccion.valid">
                 Dirección válida
@@ -63,7 +63,7 @@
               <input name="habitaciones" type="number" step="1" class="form-control" formControlName="habitaciones" placeholder="Mínimo 10 Kcal y máximo 99999">
               <small class="form-text text-danger" 
               *ngIf="formulario.controls.habitaciones.invalid && formulario.controls.habitaciones.touched">
-                *Mínimo 1 y máximo 99999.
+                *Mínimo 1 y máximo 99.
               </small>
               <small class="form-text text-success" *ngIf="formulario.controls.habitaciones.valid">
                 Habitaciones válidas

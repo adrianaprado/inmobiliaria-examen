@@ -164,23 +164,19 @@
     },
     {
       "nombre": "Ejemplo",
-      "precio": 3454354,
-      "alquiler": true,
-      "habitaciones": 7,
-      "foto": "http://img2.rtve.es/v/4452138?w=1600&preview=1517516839899.jpg",
-      "direccion": "Calle Ejemplo",
+      "precio": 344234324,
+      "alquiler": false,
+      "habitaciones": 34,
+      "foto": "https://www.hola.com/imagenes/actualidad/20180216120517/familia-franco-pone-venta-pazo-meiras/0-539-996/pazo-meiras-t.jpg",
+      "direccion": "Ejemplo",
       "servicios": [
         {
-          "_nombre": "TV",
-          "_disponible": true
+          "nombre": "Prueba",
+          "disponible": true
         },
         {
-          "_nombre": "Baño",
-          "_disponible": true
-        },
-        {
-          "_nombre": "Wi-Fi",
-          "_disponible": false
+          "nombre": "Prueba2",
+          "disponible": false
         }
       ],
       "id": 7
