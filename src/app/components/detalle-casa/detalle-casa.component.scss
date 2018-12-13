@@ -1,0 +1,34 @@
+.card{
+    width: 100%;
+}
+
+.card-head{
+    position: relative;
+
+    .alquilada{
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        font-size: 1em;
+        font-weight: 600;
+        padding: 10px 5px;
+    }
+
+    .precio{
+        position: absolute;
+        top: 7px;
+        left: 15px;
+        font-size: 1em;
+        font-weight: 600;
+        padding: 10px 5px;
+    }
+}
+
+img.card-img-top{
+    width: 100%;
+    height: 230px;
+}
+
+i.fas.fa-plus-circle.text-danger{
+    transform: rotate(45deg);
+}

@@ -1,0 +1,179 @@
+<div class="text-left mt-2 mb-3">
+  <div class="row">
+    <div class="col">
+      <h3 class="text-center">Crear nueva casa</h3>
+
+      <!-- Alerta -->
+      <div *ngIf="mensaje" class="alert alert-{{tipoAlerta}} alert-dismissible fade show" role="alert">
+        <span>{{mensaje}}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- /Alerta -->
+
+      <div class="text-right mb-2">
+        <a class="btn btn-outline-primary" (click)="vaciarCampos()">Crear nueva casa</a>
+      </div>
+    
+      <!-- form -->
+      <form [formGroup]="formulario" novalidate (ngSubmit)="enviar()">
+        <!-- .row -->
+        <div class="row">
+          <!-- .col -->
+          <div class="col">
+            <div class="form-group">
+              <label for="nombre" class="col-form-label">Nombre:</label>
+              <input name="nombre" class="form-control" type="text" formControlName="nombre" placeholder="Mínimo 2 letras y máximo 50">
+              <small class="form-text text-danger" 
+              *ngIf="formulario.controls.nombre.invalid && formulario.controls.nombre.touched">
+                *Mínimo 2 letras y máximo 50.
+              </small>
+              <small class="form-text text-success" *ngIf="formulario.controls.nombre.valid">
+                Nombre válido
+              </small>
+            </div>
+          </div>
+          <!-- /.col -->
+
+          <!-- .col -->
+          <div class="col">
+            <div class="form-group">
+              <label for="direccion" class="col-form-label">Dirección:</label>
+              <input name="direccion" class="form-control" type="text" formControlName="direccion" placeholder="Mínimo 2 letras y máximo 50">
+              <small class="form-text text-danger" 
+              *ngIf="formulario.controls.direccion.invalid && formulario.controls.direccion.touched">
+                *Mínimo 2 letras y máximo 50.
+              </small>
+              <small class="form-text text-success" *ngIf="formulario.controls.direccion.valid">
+                Dirección válida
+              </small>
+            </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    
+        <!-- .row -->
+        <div class="row">
+          <!-- .col -->
+          <div class="col">
+            <div class="form-group">
+              <label for="habitaciones" class="col-form-label">Número de habitaciones:</label>
+              <input name="habitaciones" type="number" step="1" class="form-control" formControlName="habitaciones" placeholder="Mínimo 10 Kcal y máximo 99999">
+              <small class="form-text text-danger" 
+              *ngIf="formulario.controls.habitaciones.invalid && formulario.controls.habitaciones.touched">
+                *Mínimo 1 y máximo 99999.
+              </small>
+              <small class="form-text text-success" *ngIf="formulario.controls.habitaciones.valid">
+                Habitaciones válidas
+              </small>
+            </div>
+          </div>
+          <!-- /.col -->
+
+          <!-- .col -->
+          <div class="col">
+            <div class="form-group">
+              <label for="precio" class="col-form-label">Precio:</label>
+              <input name="precio" class="form-control" type="number" step="0.5" formControlName="precio" placeholder="Euros entre 0.1 y 9999">
+              <small class="form-text text-danger" 
+              *ngIf="formulario.controls.precio.invalid && formulario.controls.precio.touched">
+                *Precio tiene que estar entre 0.1 y 9999999999999 &euro;
+              </small>
+              <small class="form-text text-success" *ngIf="formulario.controls.precio.valid">
+                Precio válido
+              </small>
+            </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    
+        <!-- .row -->
+        <div class="row align-items-center">
+          <!-- .col -->
+          <div class="col col-10">
+            <div class="form-group">
+              <label for="foto" class="col-form-label">Imagen:</label>
+              <input name="foto" type="text" class="form-control" formControlName="foto" placeholder="Ej. http://web/image.jpg">
+              <small class="form-text text-danger" 
+              *ngIf="formulario.controls.foto.invalid && formulario.controls.foto.touched">
+                *No es una url válida.
+              </small>
+              <small class="form-text text-success" *ngIf="formulario.controls.foto.valid">
+                Imagen válida
+              </small>
+              
+            </div>
+          </div>
+          <!-- /.col -->
+
+          <div class="col">
+            <img class="" style="width:100px" src="{{formulario.controls.foto.value}}" alt="foto">
+          </div>
+        </div>
+        <!-- /.row -->
+    
+        <!-- .row -->
+        <div class="row mt-2">
+          <!-- .col -->
+          <div class="col">
+            <div class="form-group">
+              <label for="servicios" class="col-form-label">Servicios:</label>
+              <a class="btn btn-outline-primary ml-4 btn-sm" (click)="nuevoServicio()">Nuevo servicio</a>
+              <!-- formArray -->
+              <div formArrayName="servicios">
+                <div *ngFor="let servicio of formulario.get('servicios').controls; let i = index">
+                  <div [formGroupName] = "i">
+                    <div class="row mt-2 mb-2 justify-content-between">
+                      <div class="col col-7">
+                        <input class="form-control" formControlName="nombre" type="text" placeholder="Nombre del servicio">
+                      </div>
+                      <div class="col col-2 form-check">
+                        <input class="form-check-input" formControlName="disponible" type="checkbox">
+                        <label class="form-check-label" for="disponible">
+                          Disponible
+                        </label>
+                      </div>
+                      <div class="col col-2">
+                        <a class="btn btn-outline-danger ml-4" (click)="eliminarServicio(i)">Eliminar</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /formArray -->
+            </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    
+        <!-- .row -->
+        <div class="row align-items-center">
+          <!-- .col -->
+          <div class="col col-6">
+            <div class="form-check">
+              <input name="alquiler" class="form-check-input" type="checkbox" value="" formControlName="alquiler">
+              <label class="form-check-label" for="alquiler">
+                EN ALQUILER
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- 7.row -->
+
+        <hr>
+
+        <div class="row">
+          <div class="col">
+              <input type="submit" class="btn btn-outline-primary" [disabled]="formulario.status === 'INVALID'">
+          </div>
+        </div>
+      </form>
+      <!-- /form -->
+    </div>
+  </div>
+</div>

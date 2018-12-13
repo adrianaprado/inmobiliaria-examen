@@ -1,0 +1,53 @@
+<div class="mt-2">
+    <div class="row container-fluid d-flex justify-content-start">
+        <div class="col col-4 d-flex flex-column">
+            <h4 class="text-center">Lista Casas</h4>
+            <!-- Filtro Alquiler -->
+            <div class="text-center mb-2">
+                <div class="btn-group" role="group">
+                <button type="button" (click)="filtrar(0)" class="btn btn-success {{(todas == 0)?'active':''}}">Todas</button>
+                <button type="button" (click)="filtrar(1)" class="btn btn-success {{(todas == 1)?'active':''}}">Alquiler</button>
+                <button type="button" (click)="filtrar(2)" class="btn btn-success {{(todas == 2)?'active':''}}">En Venta</button>
+                </div>
+            </div>
+            <!-- /Filtro Alquiler -->
+
+            <!-- Filtro Precios -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Precio min.</span>
+                </div>
+                <input type="number" class="form-control" placeholder="Mín. €" [(ngModel)]="numMin">
+                <div class="input-group-append">
+                    <span class="input-group-text">&euro; y máx </span>
+                </div>
+                <input type="number" class="form-control" placeholder="Máx. €" [(ngModel)]="numMax">
+                <div class="input-group-append">
+                    <span class="input-group-text">&euro;</span>
+                </div>
+            </div>
+            <!-- /Filtro Precios -->
+
+            <!-- Lista Casas -->
+            <div class="list-group list-group-flush">
+              <button type="button" class="list-group-item list-group-item-action active" 
+              *ngFor="let c of casas | alquiler:todas | precios:numMin:numMax" (click)="mostrar(c)" [class.active]="c === casa">
+                <section class="font-weight-bold">{{c.nombre}}</section>
+                <section>{{c.direccion}}</section>
+                <section>{{c.precio}} &euro;</section>
+              </button>
+            </div>
+        </div>
+        <!-- /Lista Casas-->
+
+        <!-- Cards -->
+        <div class="col col-8">
+            <h4 class="text-center">Detalle casa seleccionada</h4>
+            <div class="row justify-content-center">
+                <div class="col col-8">
+                    <app-detalle-casa [_casa]="casa"></app-detalle-casa>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

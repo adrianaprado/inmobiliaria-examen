@@ -1,0 +1,34 @@
+<div class="card">
+  <!-- .card-head -->
+  <div class="card-head">
+    <img class="card-img-top" src="{{casa.foto}}" alt="Card image cap">
+    <div *ngIf="casa.alquiler">
+      <span class="badge badge-danger alquilada">Alquilada</span>
+    </div>
+    <span class="badge badge-success precio">{{casa.precio}} &euro;</span>
+  </div>
+  <!-- /.card-head -->
+
+  <!-- .card-body -->
+  <div class="card-body">
+    <h5 class="card-title">
+      {{casa.nombre}}
+    </h5>
+    <hr>
+    <section class="card-text"><b>Dirección:</b> {{casa.direccion}}.</section>
+    <section class="card-text"><b>Nº de habitaciones:</b> {{casa.habitaciones}}.</section>
+    <section class="font-weight-bold">Servicios:</section>
+    <section *ngFor="let servicio of casa.servicios">
+      <div class="row justify-content-center">
+        <div class="col col-6">
+          <span>{{servicio.nombre}}</span>
+        </div>
+        <div class="col col-2">
+          <i class="fas fa-{{(servicio.disponible)?'check':'plus'}}-circle 
+          text-{{(servicio.disponible)?'success':'danger'}}"></i>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- /.card-body -->
+</div>
